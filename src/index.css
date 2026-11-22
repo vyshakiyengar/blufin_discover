@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0F1B2A;
+  --color-ink-2: #3E4C5C;
+  --color-ink-3: #6B7887;
+  --color-deep: #0B3A5B;
+  --color-deep-2: #12507A;
+  --color-pool: #1C93AE;
+  --color-pool-soft: #DDF0F4;
+  --color-paper: #EEF3F5;
+  --color-line: #D9E2E7;
+  --color-rope: #E0453A;
+  --color-rope-soft: #FCE6E3;
+  --color-gold: #C9962A;
+  --color-gold-soft: #F7EBCD;
+  --color-silver: #8D98A3;
+  --color-silver-soft: #E9EDF0;
+  --color-bronze: #A8653A;
+  --color-bronze-soft: #F2E1D5;
+  --color-grass: #2E8B57;
+  --color-grass-soft: #DFF1E6;
+}
+
+html { background: var(--color-paper); color: var(--color-ink); }
+body { font-family: var(--font-sans); font-variation-settings: "wdth" 100; -webkit-font-smoothing: antialiased; }
+
+/* Expanded, heavy Archivo: the scoreboard voice of the product */
+.display { font-variation-settings: "wdth" 125; font-weight: 800; letter-spacing: -0.01em; line-height: 1.05; }
+.display-tight { font-variation-settings: "wdth" 118; font-weight: 750; letter-spacing: -0.005em; line-height: 1.15; }
+.condensed { font-variation-settings: "wdth" 75; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Lane rope: the one decorative signature. Alternating segments like a pool lane line. */
+.lane-rope {
+  height: 6px;
+  background: repeating-linear-gradient(90deg,
+    var(--color-rope) 0 18px, #fff 18px 22px,
+    var(--color-deep) 22px 40px, #fff 40px 44px);
+}
+.lane-rope-thin { height: 3px; }
+
+:focus-visible { outline: 3px solid var(--color-pool); outline-offset: 2px; border-radius: 6px; }
+
+.card { background: #fff; border: 1px solid var(--color-line); border-radius: 14px; }
+
+@keyframes rise { from { transform: translateY(8px); opacity: 0 } to { transform: none; opacity: 1 } }
+.rise { animation: rise .35s ease-out both; }
+@keyframes pop { 0% { transform: scale(1) } 40% { transform: scale(1.25) } 100% { transform: scale(1) } }
+.pop { animation: pop .3s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
