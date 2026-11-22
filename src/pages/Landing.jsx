@@ -28,7 +28,7 @@ export default function Landing() {
 
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-14 items-start mt-12 lg:mt-20">
           <div>
-            <h1 className="display text-[clamp(2.4rem,6vw,4.6rem)]">Every medal, every coach, every backer. One profile.</h1>
+            <h1 className="display text-[clamp(2.1rem,4.4vw,3.6rem)]">Every medal, every coach, every backer. One profile.</h1>
             <p className="mt-6 text-lg text-white/85 max-w-[52ch] leading-relaxed">
               Blufin Discover is where athletes keep a verified record of their results, coaches and support staff show who they have built, and foundations, federations and brands find the next champion.
             </p>
