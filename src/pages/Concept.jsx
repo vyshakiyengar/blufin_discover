@@ -14,7 +14,7 @@ export default function Concept() {
       </header>
 
       <section>
-        <H2>Four users, four jobs</H2>
+        <H2>Who it is for, and what each needs</H2>
         <div className="grid md:grid-cols-2 gap-4">
           {JOBS.map(j => (
             <div key={j.who} className="card p-5">

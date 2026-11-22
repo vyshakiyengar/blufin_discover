@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { Home, BookUser, HandCoins, Trophy, Megaphone, ListChecks, Search, PieChart, ScrollText, ShieldCheck, Users, Lightbulb, RotateCcw, LogOut, Repeat, Check, ChevronDown, ChevronUp, Compass } from 'lucide-react'
+import { Home, BookUser, HandCoins, Trophy, Megaphone, ListChecks, PieChart, ScrollText, ShieldCheck, Users, Lightbulb, RotateCcw, LogOut, Repeat, Check, ChevronDown, ChevronUp, Compass } from 'lucide-react'
 import { useStore } from '../store'
 import { Avatar, OrgMark } from './ui'
 import { ORGS } from '../data/orgs'
@@ -18,15 +18,16 @@ export function Logo({ light }) {
 }
 
 export const NAVS = {
-  athlete: [['/today', 'Today', Home], ['/passport', 'Passport', BookUser], ['/opportunities', 'Opportunities', HandCoins], ['/wins', 'Wins', Trophy]],
-  foundation: [['/f/calls', 'Calls', Megaphone], ['/f/review', 'Review', ListChecks], ['/f/scout', 'Scout', Search], ['/f/portfolio', 'Portfolio', PieChart]],
-  federation: [['/g/circulars', 'Circulars', ScrollText], ['/g/verify', 'Verify & publish', ShieldCheck], ['/g/registry', 'Registry', Users]],
-  public: [['/wins', 'Wins', Trophy], ['/explore', 'Explore', Compass]],
+  athlete: [['/today', 'Today', Home], ['/passport', 'Passport', BookUser], ['/discover', 'Discover', Compass], ['/opportunities', 'Opportunities', HandCoins]],
+  foundation: [['/f/calls', 'Calls', Megaphone], ['/f/review', 'Review', ListChecks], ['/discover', 'Discover', Compass], ['/f/portfolio', 'Portfolio', PieChart]],
+  federation: [['/g/circulars', 'Circulars', ScrollText], ['/g/verify', 'Verify', ShieldCheck], ['/g/registry', 'Registry', Users], ['/discover', 'Discover', Compass]],
+  public: [['/discover', 'Discover', Compass], ['/wins', 'Wins', Trophy]],
 }
 
 export const GUIDES = {
   athlete: [
     ['a-passport', 'Open your Sports Passport', 'IDs, classification, stamps and verified results in one place.', '/passport'],
+    ['a-discover', 'Find a verified coach or physio near you', 'Everyone in the ecosystem is in one place, with what is verified.', '/discover?group=support&state=Karnataka'],
     ['a-result', 'Add Saturday\'s result and ask KSA to verify it', 'Self-reported until the organiser confirms it.', '/passport?add=1'],
     ['a-circular', 'Act on a circular that applies to you', 'Only circulars you are eligible for reach you, with checks done.', '/today'],
     ['a-apply', 'Apply to Blufin\'s Para Swim Accelerator', 'Your passport is the application. No forms.', '/opportunities/blufin-psa-2027'],
@@ -34,7 +35,7 @@ export const GUIDES = {
   blufin: [
     ['fd-review', 'Open the Accelerator applicants', 'Evidence, not essays: what is verified and what is not.', '/f/review'],
     ['fd-select', 'Move a strong applicant to Selected', 'Drag them through the stages your panel uses.', '/f/review'],
-    ['fd-scout', 'Scout an unbacked para swimmer', 'Search verified passports and add one to your watchlist.', '/f/scout'],
+    ['fd-scout', 'Discover an unbacked para swimmer', 'Search everyone verified and add one to your watchlist.', '/discover?group=athletes&sport=Para%20Swimming&unbacked=1'],
     ['fd-report', 'Generate the impact report for your CSR donor', 'Built from verified results and spend.', '/f/portfolio'],
   ],
   ksa: [

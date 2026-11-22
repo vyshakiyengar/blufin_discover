@@ -1,8 +1,8 @@
 # Blufin Discover: concept
 
-Indian sport runs on documents, not posts. Entries, selection, funding and sports-quota jobs all depend on proving who you are, how old you are, what class you compete in and what you have won. Today that proof lives in PDFs, photocopies and WhatsApp forwards. Blufin Discover makes it one verified record that federations write to, athletes own, and funders read.
+Indian sport is fragmented. Athletes, coaches, physios, nutritionists, academies, foundations and federations each keep their own records, and they find each other through whoever they happen to know. The proof that matters (results, age, sport class, certifications) lives in PDFs, photocopies and WhatsApp forwards. Blufin Discover puts everyone in one place with information verified by whoever issued it, so everyone becomes discoverable and the ecosystem starts working as one.
 
-## Four users, four jobs
+## Who it is for, and what each needs
 
 ### Athlete (Meera, 21, S9 para swimmer, Bengaluru)
 
@@ -12,13 +12,29 @@ Indian sport runs on documents, not posts. Entries, selection, funding and sport
 
 **What we built:** Sports Passport, Today: only what applies to me, Apply with my passport.
 
+### Coach, physio, nutritionist (Arjun Nair, para swimming coach; Siddharth Rao, physio)
+
+**Jobs:** Be found by athletes and academies that need me; Show certifications that people can trust; Show who I actually work with.
+
+**What gets in the way today:** Credentials are just lines in a bio; Work comes only through word of mouth; Nothing links my record to my athletes' results.
+
+**What we built:** Profile with credentials verified by the issuing body, Connections confirmed by both sides, Listed in Discover by sport and state.
+
+### Academy or gym (LaneSix Aquatics, Bengaluru)
+
+**Jobs:** Show facilities and programmes; Show which athletes train here and who coaches them; Be checked by funders and federations.
+
+**What gets in the way today:** Every academy claims champions; Funders cannot easily check facilities.
+
+**What we built:** Academy profile with verified checks, Athletes and staff linked to it.
+
 ### Foundation (Blufin, GoSports, OGQ)
 
 **Jobs:** Find athletes with real potential, often before they apply; Run a fair call and select on evidence; Track athletes after selection; Report impact to CSR donors.
 
 **What gets in the way today:** Self-reported results are hard to check; Panels spend time on paperwork, not judgement; Impact reports are assembled by hand.
 
-**What we built:** Scout with a watchlist and invites, Calls with criteria checked automatically, Review board showing what is verified, Impact report from verified results.
+**What we built:** Discover unbacked talent, with a watchlist and invites, Calls with criteria checked automatically, Review board showing what is verified, Impact report from verified results.
 
 ### State federation (Karnataka Swimming Association)
 
@@ -45,7 +61,7 @@ Indian sport runs on documents, not posts. Entries, selection, funding and sport
 - **Results by level, with their source:** International, national, Khelo India, state, university, school. Each shows whether the organiser published it, a coach co-signed it, or the athlete reported it.
 - **Standards and rankings:** Personal bests against the qualifying time that matters next, such as a World Championships MQS, and current rankings.
 - **Sports-quota certificates:** Government jobs and admissions ask for Form 1 (international, from the national federation), Form 2 (national, from the state association), Form 3 (university) and Form 4 (school). Federations can issue them digitally when they publish results.
-- **Team, backing and schemes:** Coach, physio, nutritionist; foundation backing; government schemes such as TOPS or Khelo India Athlete status.
+- **Connections:** Coach, physio, nutritionist, academy, foundation backing and federations, each linked to its own verified profile and confirmed by both sides. Government schemes such as TOPS or Khelo India Athlete status sit alongside.
 - **Season plan and budget:** The goal for the season and an itemised budget, with what is already secured. This is what funders actually decide on.
 
 ## How foundations actually choose athletes
@@ -58,7 +74,9 @@ Indian sport runs on documents, not posts. Entries, selection, funding and sport
 
 ## Design principles
 
+- **Everyone, in one place:** Athletes, support staff, academies, foundations and federations share one directory, so anyone can find anyone.
 - **Records, not posts:** The core object is a verified record. Celebration (Wins) is built from it, not the other way round.
+- **Connections are confirmed:** A coach appears on an athlete's profile only when both sides confirm it.
 - **Verification flows from the source:** Federations publish the results they already hold. Athletes never have to prove the same medal twice.
 - **Eligibility is computed:** Circulars and calls carry rules. Athletes only see what applies to them, already checked. Funders only read applications that qualify.
 - **One record, many uses:** The same passport enters events, applies for funding, backs a sports-quota job application and shows sponsors who you are.

@@ -4,14 +4,14 @@ import { useStore } from './store'
 import Shell, { roleOf } from './components/Shell'
 import Landing from './pages/Landing'
 import Concept from './pages/Concept'
-import { TeamMember, Explore } from './pages/Misc'
+import { TeamMember, OrgPage } from './pages/Misc'
+import Discover from './pages/Discover'
 import Today from './pages/athlete/Today'
 import PassportPage from './pages/athlete/PassportPage'
 import { OpportunitiesList, CallDetail } from './pages/athlete/Opportunities'
 import Wins from './pages/athlete/Wins'
 import FoundationCalls from './pages/foundation/Calls'
 import Review from './pages/foundation/Review'
-import Scout from './pages/foundation/Scout'
 import Portfolio from './pages/foundation/Portfolio'
 import FedCirculars from './pages/federation/Circulars'
 import Verify from './pages/federation/Verify'
@@ -47,10 +47,12 @@ export default function App() {
         <Route path="/wins" element={<Shell><Wins /></Shell>} />
         <Route path="/p/:id" element={<Shell><PassportPage publicView /></Shell>} />
         <Route path="/team/:id" element={<Shell><TeamMember /></Shell>} />
-        <Route path="/explore" element={<Shell><Explore /></Shell>} />
+        <Route path="/discover" element={<Shell><Discover /></Shell>} />
+        <Route path="/explore" element={<Navigate to="/discover" replace />} />
+        <Route path="/org/:id" element={<Shell><OrgPage /></Shell>} />
         <Route path="/f/calls" element={<As role="foundation"><FoundationCalls /></As>} />
         <Route path="/f/review" element={<As role="foundation"><Review /></As>} />
-        <Route path="/f/scout" element={<As role="foundation"><Scout /></As>} />
+        <Route path="/f/scout" element={<Navigate to="/discover?group=athletes&sport=Para%20Swimming&unbacked=1" replace />} />
         <Route path="/f/portfolio" element={<As role="foundation"><Portfolio /></As>} />
         <Route path="/g/circulars" element={<As role="federation"><FedCirculars /></As>} />
         <Route path="/g/verify" element={<As role="federation"><Verify /></As>} />

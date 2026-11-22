@@ -3,17 +3,18 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Plus, Link2, Eye } from 'lucide-react'
 import { useStore } from '../../store'
 import { completeness } from '../../lib/eligibility'
-import { IdentityPage, StampsPage, ResultsLedger, BestsPage, CertificatesPage, TeamPage, SeasonPage, MedalTally, NextUp } from '../../components/Passport'
+import { IdentityPage, StampsPage, ResultsLedger, BestsPage, CertificatesPage, SeasonPage, MedalTally, NextUp } from '../../components/Passport'
+import { ConnectionsPanel } from '../../components/Entity'
 import { PassportCover } from '../Landing'
 import AddResultModal from '../../components/AddResultModal'
 import { Btn, Ring, Chip } from '../../components/ui'
 
-const TABS = [['identity', 'Identity'], ['stamps', 'Stamps'], ['results', 'Results'], ['standards', 'Standards'], ['certificates', 'Certificates'], ['team', 'Team & backing'], ['season', 'Season plan']]
+const TABS = [['identity', 'Identity'], ['stamps', 'Stamps'], ['results', 'Results'], ['standards', 'Standards'], ['certificates', 'Certificates'], ['team', 'Connections'], ['season', 'Season plan']]
 
 export default function PassportPage({ publicView }) {
   const { id } = useParams()
   const [params, setParams] = useSearchParams()
-  const { me, byId, flash, done, session } = useStore()
+  const { me, byId, flash, done, session } = useStore() // eslint-disable-line no-unused-vars
   const a = publicView ? byId[id] : me
   const own = !publicView || me?.id === id
   const [adding, setAdding] = useState(params.get('add') === '1')
@@ -71,7 +72,7 @@ export default function PassportPage({ publicView }) {
             {tab === 'results' && <ResultsLedger a={a} />}
             {tab === 'standards' && <BestsPage a={a} />}
             {tab === 'certificates' && <CertificatesPage a={a} owner={own} />}
-            {tab === 'team' && <TeamPage a={a} byId={byId} />}
+            {tab === 'team' && <><ConnectionsPanel e={{ ...a, kind: 'athlete' }} />{(a.schemes || []).length > 0 && <div className="flex flex-wrap gap-2">{a.schemes.map(s => <Chip key={s} tone="teal">{s}</Chip>)}</div>}</>}
             {tab === 'season' && <SeasonPage a={a} />}
           </div>
         </div>

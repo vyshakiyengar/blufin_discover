@@ -1,8 +1,9 @@
 import { useNavigate, Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Link2, Search } from 'lucide-react'
 import { useStore } from '../store'
 import { Avatar, OrgMark } from '../components/ui'
 import { Logo } from '../components/Shell'
+import { GROUPS } from '../lib/ecosystem'
 
 export function PassportCover({ className = '', name }) {
   return (
@@ -25,14 +26,20 @@ export function PassportCover({ className = '', name }) {
 }
 
 const BEFORE_AFTER = [
+  ['Talent found through whoever you happen to know', 'Anyone can search everyone, by sport, state and what is verified'],
+  ['A coach\'s record is whatever their bio says', 'Certifications confirmed by the body that issued them'],
   ['Circulars as PDFs forwarded on WhatsApp', 'Circulars reach only eligible athletes, with entry checks already done'],
-  ['Photocopied certificates attested again and again', 'Results verified at the source; Form 1 to 4 issued digitally'],
   ['A new application form for every foundation', 'Apply with your passport; reviewers see what is verified'],
-  ['Impact reports stitched together in spreadsheets', 'Reports built from verified results and tracked spend'],
+]
+
+const HOW = [
+  [ShieldCheck, 'Verified at the source', 'Results come from the federation that ran the meet. Certifications come from the body that issued them.'],
+  [Link2, 'Connected both ways', 'A coach is linked to an athlete only when both confirm it, so a profile shows who really works with whom.'],
+  [Search, 'Discoverable by everyone', 'Athletes find coaches and physios, foundations find talent, federations reach their members.'],
 ]
 
 export default function Landing() {
-  const { byId, signIn } = useStore()
+  const { byId, signIn, entities } = useStore()
   const nav = useNavigate()
   const go = (kind, id, to) => { signIn(kind, id); nav(to) }
   const meera = byId.meera
@@ -55,19 +62,16 @@ export default function Landing() {
 
         <section className="grid lg:grid-cols-[1.25fr_1fr] gap-10 items-center pt-8 lg:pt-14">
           <div>
-            <h1 className="display text-[clamp(2.2rem,4.6vw,3.7rem)] text-ink">One verified sports record for every Indian athlete.</h1>
-            <p className="mt-5 text-lg text-ink-2 max-w-[54ch] leading-relaxed">Federations write results into it. Athletes own it and use it to enter events, apply for funding and claim sports-quota jobs. Foundations fund from it, and show donors what their money did.</p>
-            <div className="mt-8 grid grid-cols-3 gap-2 max-w-xl text-center text-sm">
-              {[['Federations', 'publish results, IDs and circulars'], ['Athlete\'s passport', 'one record, verified at the source'], ['Foundations', 'run calls, select, report impact']].map(([t, d], i) => (
-                <div key={t} className="relative">
-                  <div className={`rounded-xl p-3 h-full ${i === 1 ? 'bg-deep text-white' : 'bg-white border border-line'}`}>
-                    <div className="font-bold" style={{ fontVariationSettings: '"wdth" 112' }}>{t}</div>
-                    <div className={`text-xs mt-1 leading-snug ${i === 1 ? 'text-white/80' : 'text-ink-3'}`}>{d}</div>
-                  </div>
-                  {i < 2 && <ArrowRight className="hidden sm:block absolute -right-[13px] top-1/2 -translate-y-1/2 size-4 text-rope z-10 bg-paper rounded-full" />}
-                </div>
+            <h1 className="display text-[clamp(2.2rem,4.6vw,3.7rem)] text-ink">All of Indian sport, verified and in one place.</h1>
+            <p className="mt-5 text-lg text-ink-2 max-w-[54ch] leading-relaxed">Every athlete, coach, physio, academy, foundation and federation gets one profile, with its facts confirmed by whoever issued them. Everyone becomes discoverable, and the ecosystem starts working as one.</p>
+            <div className="mt-7 flex flex-wrap gap-2 max-w-xl">
+              {GROUPS.map(g => (
+                <Link key={g.key} to={`/discover?group=${g.key}`} className="rounded-full bg-white border border-line px-3.5 py-1.5 text-sm hover:border-deep">
+                  <span className="font-bold tabular-nums mr-1.5">{entities.filter(g.test).length}</span>{g.label.toLowerCase()}
+                </Link>
               ))}
             </div>
+            <Link to="/discover" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-deep text-white px-5 py-3 font-semibold hover:bg-ink">Explore the ecosystem <ArrowRight className="size-4" /></Link>
           </div>
           <div className="relative h-[380px] sm:h-[420px] hidden sm:block">
             <div className="absolute right-6 top-4 w-[250px] rotate-6"><PassportCover name="Meera Iyer" /></div>
@@ -77,6 +81,16 @@ export default function Landing() {
               <div className="mrz text-[10px] text-ink-2 mt-3 whitespace-nowrap overflow-hidden">SP&lt;INDIYER&lt;&lt;MEERA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
             </div>
           </div>
+        </section>
+
+        <section className="mt-16 grid md:grid-cols-3 gap-6">
+          {HOW.map(([I, t, d]) => (
+            <div key={t}>
+              <I className="size-6 text-rope" />
+              <h3 className="font-bold text-lg mt-2">{t}</h3>
+              <p className="text-ink-2 mt-1 leading-relaxed">{d}</p>
+            </div>
+          ))}
         </section>
 
         <section className="mt-14">

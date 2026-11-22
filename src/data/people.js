@@ -316,28 +316,85 @@ const athletes = [
   },
 ]
 
-// ───────────────────── Coaches and support staff ─────────────────────
+// ───────────────────── Coaches, support staff, academies ─────────────────────
+// Each credential says who verified it. 'declared' means uploaded but not yet checked.
+const cred = (name, by, status = 'verified') => ({ name, by, status })
+
 const pros = [
-  { id: 'c_arjun', name: 'Arjun Nair', role: 'coach', sport: 'Para Swimming', city: 'Bengaluru', state: 'Karnataka',
+  { id: 'c_arjun', name: 'Arjun Nair', role: 'coach', sport: 'Para Swimming', city: 'Bengaluru', state: 'Karnataka', worksAt: 'g_lanesix',
     headline: 'Head coach, LaneSix para squad. 14 national champions coached.',
-    credentials: ['NIS Diploma in Swimming Coaching (SAI NIS Patiala)', 'ASCA Level 3 Coach', 'WPS classification awareness course'],
+    credentials: [cred('NIS Diploma in Swimming Coaching', 'SAI NIS Patiala'), cred('ASCA Level 3 Coach', 'American Swimming Coaches Association', 'declared'), cred('Para swimming classification awareness', 'PCI')],
     history: [['Head Coach, Para Swimming', 'LaneSix Aquatics', '2019 to present'], ['Assistant Coach', 'Basavanagudi Aquatic Centre', '2015 to 2019']] },
-  { id: 'c_shalini', name: 'Shalini Mathur', role: 'coach', sport: 'Para Athletics', city: 'Sonipat', state: 'Haryana',
-    headline: 'Throws and sprints coach, national para athletics camp.', credentials: ['World Athletics CECS Level 3', 'MSc Sports Science'], history: [['National Para Athletics Coach', 'PCI camp', '2021 to present']] },
-  { id: 'c_rajesh', name: 'Rajesh Pillai', role: 'coach', sport: 'Badminton & Para Badminton', city: 'Hyderabad', state: 'Telangana',
-    headline: 'Chief coach, SmashPoint Badminton Academy.', credentials: ['BWF Level 2 Coach', 'BWF Para Badminton Coaching Course'], history: [['Chief Coach', 'SmashPoint Badminton Academy', '2016 to present']] },
-  { id: 'p_sid', name: 'Siddharth Rao', role: 'physio', sport: 'Aquatics', city: 'Bengaluru', state: 'Karnataka',
-    headline: 'Sports physiotherapist, shoulder specialist for swimmers.', credentials: ['MPT (Sports)', 'Dry needling level 2'], history: [['Team Physio', 'India para swimming tours', '2024 to 2026']] },
-  { id: 'p_joseph', name: 'Joseph Mathew', role: 'physio', sport: 'Para sports', city: 'Kochi', state: 'Kerala',
-    headline: 'Neuro and paediatric sports physio.', credentials: ['MPT (Neurology)', 'Bobath certified'], history: [['Consultant Physio', 'Kochi rehab centre', '2015 to present']] },
-  { id: 'n_kiran', name: 'Kiran Hegde', role: 'nutritionist', sport: 'Para sports', city: 'Bengaluru', state: 'Karnataka',
-    headline: 'Nutrition for para athletes.', credentials: ['MSc Sports Nutrition', 'ISAK Level 1'], history: [['Nutrition Lead (volunteer)', 'Blufin Foundation', '2020 to present']] },
-  { id: 'n_ritika', name: 'Dr. Ritika Sood', role: 'nutritionist', sport: 'Strength & throws', city: 'New Delhi', state: 'Delhi',
-    headline: 'Sports nutritionist for weight-class and throws athletes.', credentials: ['PhD, Food & Nutrition', 'IOC Diploma in Sports Nutrition'], history: [['Consultant', 'National para athletics camp', '2022 to present']] },
-  { id: 's_nandini', name: 'Dr. Nandini Rao', role: 'psychologist', sport: 'Precision & racket sports', city: 'Hyderabad', state: 'Telangana',
-    headline: 'Sports psychologist.', credentials: ['PhD, Sport Psychology'], history: [['Consultant', 'SmashPoint Badminton Academy', '2020 to present']] },
+  { id: 'c_elena', name: 'Elena Kovacs', role: 'coach', sport: 'Swimming', city: 'Pune', state: 'Maharashtra', worksAt: null,
+    headline: 'Foreign expert coach, medley and backstroke.',
+    credentials: [cred('Master Coach', 'Hungarian Swimming Federation', 'declared'), cred('Expert coach appointment', 'SFI')],
+    history: [['Expert Coach', 'Balewadi High Performance Centre', '2023 to present']] },
+  { id: 'c_shalini', name: 'Shalini Mathur', role: 'coach', sport: 'Para Athletics', city: 'Sonipat', state: 'Haryana', worksAt: null,
+    headline: 'Throws and sprints coach, national para athletics camp.',
+    credentials: [cred('CECS Level 3', 'World Athletics'), cred('MSc Sports Science', 'University record', 'declared')],
+    history: [['National Para Athletics Coach', 'PCI camp', '2021 to present']] },
+  { id: 'c_rajesh', name: 'Rajesh Pillai', role: 'coach', sport: 'Badminton', city: 'Hyderabad', state: 'Telangana', worksAt: 'g_smashpoint',
+    headline: 'Chief coach, SmashPoint Badminton Academy. Runs an integrated para squad.',
+    credentials: [cred('BWF Level 2 Coach', 'BAI'), cred('BWF Para Badminton Coaching Course', 'BAI'), cred('NIS Certificate, Badminton', 'SAI NIS Patiala')],
+    history: [['Chief Coach', 'SmashPoint Badminton Academy', '2016 to present']] },
+  { id: 'c_gurdeep', name: 'Gurdeep Sandhu', role: 'coach', sport: 'Badminton', city: 'Lucknow', state: 'Uttar Pradesh', worksAt: null,
+    headline: 'Junior development coach. Looking for players for a U-15 squad.',
+    credentials: [cred('NIS Certificate, Badminton', 'SAI NIS Patiala', 'declared')],
+    history: [['Coach', 'Lucknow district centre', '2018 to present']] },
+  { id: 'p_sid', name: 'Siddharth Rao', role: 'physio', sport: 'Aquatics', city: 'Bengaluru', state: 'Karnataka', worksAt: 'g_lanesix',
+    headline: 'Sports physiotherapist, shoulder specialist for swimmers.',
+    credentials: [cred('MPT (Sports)', 'Karnataka State Allied Health Council'), cred('Dry needling level 2', 'Course provider', 'declared')],
+    history: [['Team Physio', 'India para swimming tours', '2024 to 2026']] },
+  { id: 'p_joseph', name: 'Joseph Mathew', role: 'physio', sport: 'Para sports', city: 'Kochi', state: 'Kerala', worksAt: null,
+    headline: 'Neuro and paediatric sports physio.',
+    credentials: [cred('MPT (Neurology)', 'Kerala State Allied Health Council'), cred('Bobath certified', 'Course provider', 'declared')],
+    history: [['Consultant Physio', 'Kochi rehab centre', '2015 to present']] },
+  { id: 'n_kiran', name: 'Kiran Hegde', role: 'nutritionist', sport: 'Para sports', city: 'Bengaluru', state: 'Karnataka', worksAt: 'g_lanesix',
+    headline: 'Nutrition for para athletes.',
+    credentials: [cred('MSc Sports Nutrition', 'University record'), cred('ISAK Level 1', 'ISAK', 'declared')],
+    history: [['Nutrition Lead (volunteer)', 'Blufin Foundation', '2020 to present']] },
+  { id: 'n_ritika', name: 'Dr. Ritika Sood', role: 'nutritionist', sport: 'Strength & throws', city: 'New Delhi', state: 'Delhi', worksAt: 'g_ironhouse',
+    headline: 'Sports nutritionist for weight-class and throws athletes.',
+    credentials: [cred('PhD, Food & Nutrition', 'University record'), cred('IOC Diploma in Sports Nutrition', 'IOC')],
+    history: [['Consultant', 'National para athletics camp', '2022 to present']] },
+  { id: 's_nandini', name: 'Dr. Nandini Rao', role: 'psychologist', sport: 'Precision & racket sports', city: 'Hyderabad', state: 'Telangana', worksAt: 'g_smashpoint',
+    headline: 'Sports psychologist: pressure, focus and comebacks.',
+    credentials: [cred('PhD, Sport Psychology', 'University record'), cred('RCI registration', 'Rehabilitation Council of India')],
+    history: [['Consultant', 'SmashPoint Badminton Academy', '2020 to present']] },
 ]
 
+const gyms = [
+  { id: 'g_lanesix', name: 'LaneSix Aquatics', role: 'gym', sport: 'Aquatics', city: 'Bengaluru', state: 'Karnataka',
+    headline: '50m pool with hoist and ramp entry. Home of the Blufin para squad.',
+    credentials: [cred('KSA-affiliated club', 'KSA'), cred('Accessible facility audit', 'Blufin Foundation'), cred('Lifeguard certification', 'RLSS India', 'declared')],
+    facilities: ['50m 8-lane pool', 'Pool hoist and ramp entry', 'Accessible changing rooms', 'Dryland gym'],
+    programmes: ['Para swim squad', 'Learn-to-swim', 'Masters'] },
+  { id: 'g_smashpoint', name: 'SmashPoint Badminton Academy', role: 'gym', sport: 'Badminton', city: 'Hyderabad', state: 'Telangana',
+    headline: '12 courts with an integrated para badminton programme.',
+    credentials: [cred('Affiliated academy', 'BAI'), cred('Wheelchair-accessible courts', 'Blufin Foundation')],
+    facilities: ['12 synthetic courts', '2 wheelchair-accessible courts', 'Video analysis room'],
+    programmes: ['Elite squad', 'Para badminton squad', 'Junior pathway'] },
+  { id: 'g_ironhouse', name: 'Ironhouse Para Fitness', role: 'gym', sport: 'Adaptive strength', city: 'New Delhi', state: 'Delhi',
+    headline: 'Adaptive strength gym for wheelchair users and amputees.',
+    credentials: [cred('Para powerlifting training centre', 'PCI'), cred('Step-free access audit', 'Blufin Foundation')],
+    facilities: ['Para powerlifting benches', 'Adaptive cable machines', 'Step-free throughout'],
+    programmes: ['Para powerlifting club', 'Adaptive fitness for beginners'] },
+  { id: 'g_balewadi', name: 'Balewadi Aquatics Centre', role: 'gym', sport: 'Aquatics', city: 'Pune', state: 'Maharashtra',
+    headline: 'High-performance pool and sports science lab.',
+    credentials: [cred('National camp venue', 'SFI'), cred('Sports science lab', 'Self-declared', 'declared')],
+    facilities: ['50m pool', 'Diving pool', 'Sports science lab'],
+    programmes: ['High-performance squad'] },
+]
+
+// Where athletes train (the athlete confirms the link from their passport)
+const TRAINS_AT = { meera: 'g_lanesix', karthik: 'g_lanesix', tejas: 'g_lanesix', sana: 'g_smashpoint', kavya: 'g_smashpoint', dev: 'g_smashpoint', irfan: 'g_ironhouse', tanvi: 'g_balewadi' }
+for (const a of athletes) if (TRAINS_AT[a.id]) a.trainsAt = TRAINS_AT[a.id]
+// More confirmed coach links
+const addTeam = (aid, pid, role) => { const a = athletes.find(x => x.id === aid); if (!a.team.some(([p]) => p === pid)) a.team.push([pid, role]) }
+addTeam('tanvi', 'c_elena', 'Coach'); addTeam('ira', 'c_elena', 'Camp coach'); addTeam('irfan', 'n_ritika', 'Nutritionist')
+addTeam('kavya', 's_nandini', 'Sports psychologist'); addTeam('tejas', 'p_sid', 'Physiotherapist')
+
+export const GYMS = gyms
 export const SEED_ATHLETES = athletes
 export const PROS = pros
 export const DEMO_ATHLETE = 'meera'

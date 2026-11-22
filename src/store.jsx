@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
-import { SEED_ATHLETES, PROS } from './data/people'
+import { SEED_ATHLETES, PROS, GYMS } from './data/people'
+import { buildEntities } from './lib/ecosystem'
 import { ORGS } from './data/orgs'
 import { SEED_CIRCULARS } from './data/circulars'
 import { SEED_CALLS, SEED_APPLICATIONS } from './data/calls'
@@ -75,7 +76,8 @@ export function StoreProvider({ children }) {
     return { ...a, results, dobVerified, ageFlag: dobVerified ? null : a.ageFlag, certificates: [...(s.certs[a.id] || []), ...(a.certificates || [])] }
   }), [s.added, s.verdicts, s.published, s.ageOk, s.certs])
 
-  const byId = useMemo(() => Object.fromEntries([...athletes, ...PROS].map(x => [x.id, x])), [athletes])
+  const byId = useMemo(() => Object.fromEntries([...athletes, ...PROS, ...GYMS].map(x => [x.id, x])), [athletes])
+  const entities = useMemo(() => buildEntities(athletes, PROS, GYMS), [athletes])
   const circulars = useMemo(() => [...s.circulars, ...SEED_CIRCULARS].sort((a, b) => b.date.localeCompare(a.date)), [s.circulars])
   const applications = useMemo(() => {
     const out = {}
@@ -103,7 +105,7 @@ export function StoreProvider({ children }) {
   })
 
   const api = {
-    ...s, athletes, byId, circulars, applications, calls: [...s.newCalls, ...SEED_CALLS], me, org, flash, done,
+    ...s, athletes, byId, entities, pros: PROS, gyms: GYMS, circulars, applications, calls: [...s.newCalls, ...SEED_CALLS], me, org, flash, done,
     publishCall: (c) => { setS(x => ({ ...x, newCalls: [{ ...c, id: `call${Date.now()}` }, ...x.newCalls] })); flash('Call published. Eligible athletes see it on their Today page.') },
     signIn: (kind, id) => setS(x => ({ ...x, session: { kind, id } })),
     signOut: () => setS(x => ({ ...x, session: null })),
